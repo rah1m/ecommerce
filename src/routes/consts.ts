@@ -2,7 +2,13 @@ export const ROUTES = {
     GLOBAL: {
         PATH: '/',
         HOME: {
-            PATH: '/home',
+            PATH: '/',
+        },
+        PRODUCT: {
+            PATH: '/product/:id',
+        },
+        LOGIN: {
+            PATH: '/login',
         },
     },
 };

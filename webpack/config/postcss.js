@@ -7,7 +7,7 @@ import {arrayFilterEmpty} from '../utils/helpers';
 
 module.exports = () => {
     const plugins = arrayFilterEmpty([
-        'autoprefixer',
+        require('autoprefixer'),
         isProd ? 'cssnano' : null,
     ]);
     return {

@@ -8,7 +8,7 @@ import {rootDir} from '../utils/env';
 
 export const aliasItems = {
     '@src': join(rootDir, '/src'),
-    '@images': join(rootDir, '/src/images'),
-    '@styles': join(rootDir, '/src/styles'),
+    '@images': join(rootDir, '/src/assets/images'),
+    '@styles': join(rootDir, '/src/assets/styles'),
     '@components': join(rootDir, '/src/components'),
 };
