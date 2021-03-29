@@ -1,24 +1,29 @@
-import axios from 'axios';
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useEffect} from 'react';
 import {Col, Row} from 'react-bootstrap';
 
-import {IProduct} from '@src/assets/models/product';
+import {Product as IProduct} from '@src/@types/product.types';
 import Product from '@src/components/Product';
+import {useActions} from '@src/hooks/useActions';
+import {useTypedSelector} from '@src/hooks/useTypedSelecter';
 
 const HomePage: FC = () => {
-    const [products, setProducts] = useState<IProduct[]>([]);
+    const {fetchProductList} = useActions();
+
+    const {products, error} = useTypedSelector((state) => state.productList);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/api/products').then((res) => {
-            setProducts(res?.data);
-        });
+        fetchProductList();
     }, []);
+
+    if (error) {
+        return <h1>{error}</h1>;
+    }
 
     return (
         <>
             <h1>Latest products</h1>
             <Row>
-                {products?.map((product) => (
+                {products?.map((product: IProduct) => (
                     <Col key={product?._id} sm={12} md={6} lg={4} xl={3}>
                         <Product product={product} />
                     </Col>
