@@ -6,13 +6,13 @@ import {ProductAction} from '../actions/productActions';
 export interface ProductState {
     loading: boolean;
     error: string | null;
-    products: Product;
+    product: Product;
 }
 
 const initialState = {
     loading: false,
     error: null,
-    products: {},
+    product: {},
 };
 
 export const productReducer = (
@@ -24,20 +24,20 @@ export const productReducer = (
             return {
                 loading: true,
                 error: null,
-                products: {},
+                product: {},
             };
 
         case ProductActionType.PRODUCT_REPOSITORIES_SUCCESS:
             return {
                 loading: false,
                 error: null,
-                products: action.payload,
+                product: action.payload,
             };
         case ProductActionType.PRODUCT_REPOSITORIES_ERROR:
             return {
                 loading: false,
                 error: action.payload,
-                products: {},
+                product: {},
             };
         default:
             return state;

@@ -4,6 +4,8 @@ import {NavLink, useParams} from 'react-router-dom';
 
 import products from '@src/assets/data/products';
 import {IProduct} from '@src/assets/models/product';
+import Loader from '@src/components/Loader';
+import Message from '@src/components/Message';
 import Rating from '@src/components/Rating';
 import {useActions} from '@src/hooks/useActions';
 import {useTypedSelector} from '@src/hooks/useTypedSelecter';
@@ -16,20 +18,19 @@ const ProductPage: FC = () => {
 
     const {fetchProduct} = useActions();
 
-    const {products: product, error, loading} = useTypedSelector(
+    const {product, error, loading} = useTypedSelector(
         (state) => state.product,
     );
 
     useEffect(() => {
         if (id) fetchProduct(id);
     }, [id]);
-    console.log(!!product);
 
     if (loading) {
-        return <h1>Loading...</h1>;
+        return <Loader />;
     }
     if (error) {
-        return <h1>{error}</h1>;
+        return <Message variant="danger">{error}</Message>;
     }
     return (
         <>
